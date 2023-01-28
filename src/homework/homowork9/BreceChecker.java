@@ -17,18 +17,43 @@ public class BreceChecker {
             switch (c) {
                 case '(':
                     stack.push(c);
-                    char var = (char) stack.pop();
-                    if (var != ')') {
-                        System.err.println("Error: " + i + " opened " + var + " but closed " + var);
-                    }
-                    break;
                 case '[':
                     stack.push(c);
-                    char var2 = (char) stack.pop();
-                    if (var2 != ']') {
-                        System.err.println("Error: " + i + " opened " + var2 + " but closed " + var2);
+                case '{':
+                    stack.push(c);
+                case ')':
+                   char var = (char) stack.pop();
+                    if (var != ')') {
+                        System.err.println("Error: " + i + " opened " + var + " but closed " + c);
                     }
                     break;
+                case ']':
+                    char var2 = (char) stack.pop();
+                    if (var2 != ']') {
+                        System.err.println("Error: " + i + " opened " + var2 + " but closed " + c);
+                    }
+                    break;
+                    case '}':
+                    char var3 = (char) stack.pop();
+                    if (var3 != '}') {
+                        System.err.println("Error: " + i + " opened " + var3 + " but closed " + c);
+                    }
+                    break;
+
+
+
+
+
+
+
+//                case '[':
+//                    stack.push(c);
+//                case ']':
+//                    char var2 = (char) stack.pop();
+//                    if (var2 != ']') {
+//                        System.err.println("Error: " + i + " opened " + var2 + " but closed " + var2);
+//                    }
+//                    break;
             }
         }
     }
