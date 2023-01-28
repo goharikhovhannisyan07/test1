@@ -19,14 +19,14 @@ public class BreceChecker {
                     stack.push(c);
                     char var = (char) stack.pop();
                     if (var != ')') {
-                        System.err.println("Error: " + i + " opened " + var + " but closed )" );
+                        System.err.println("Error: " + i + " opened " + var + " but closed " + var);
                     }
                     break;
                 case '[':
                     stack.push(c);
                     char var2 = (char) stack.pop();
                     if (var2 != ']') {
-                        System.err.println("Error: " + i + " opened " + var2 + " but closed } " );
+                        System.err.println("Error: " + i + " opened " + var2 + " but closed " + var2);
                     }
                     break;
             }
