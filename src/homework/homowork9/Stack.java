@@ -29,9 +29,17 @@ public class Stack {
 
     public int pop() {
         if (tos < 0) {
-            System.err.println("Stack is empty ");
-            return 0;
+            return -1;
         }
         return array[tos--];
     }
+
+    public int getTos() {
+        return tos;
+    }
+
+    public void setTos(int tos) {
+        this.tos = tos;
+    }
+
 }
