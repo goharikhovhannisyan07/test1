@@ -3,7 +3,6 @@ package homework.homowork9;
 public class BreceChecker {
 
     private String text;
-    Stack stack = new Stack();
 
 
     public BreceChecker(String text) {
@@ -12,35 +11,56 @@ public class BreceChecker {
     }
 
     public void check() {
+        Stack stack = new Stack();
+        int last;
+        char lastBracket;
         for (int i = 0; i < text.length(); i++) {
+
             char c = text.charAt(i);
             switch (c) {
                 case '(':
-                    stack.push(c);
-                case ')':
-                    char var = (char) stack.pop();
-                    if (var != c) {
-                        System.err.println("Error: " + i + " opened " + var + " but closed " + c);
-                    }
-                    break;
-
                 case '[':
-                    stack.push(c);
-                case ']':
-                    char var2 = (char) stack.pop();
-                    if (var2 != c) {
-                        System.err.println("Error: " + i + " opened " + var2 + " but closed " + c);
-                    }
-                    break;
                 case '{':
                     stack.push(c);
+                    break;
+                case ')':
+                    last = stack.pop();
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " closed " + c + " but not opened");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '(') {
+                            System.err.println("Error at " + i + " opened " + lastBracket + " but closed " + c);
+                        }
+                    }
+                    break;
+                case ']':
+                    last = stack.pop();
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " closed " + c + " but not opened");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '[') {
+                            System.err.println("Error at " + i + " opened " + lastBracket + " but closed " + c);
+                        }
+                    }
+                    break;
                 case '}':
-                    char var3 = (char) stack.pop();
-                    if (var3 != c) {
-                        System.err.println("Error: " + i + " opened " + var3 + " but not closed ");
+                    last = stack.pop();
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " closed " + c + " but not opened");
+                    } else {
+                        lastBracket = (char) last;
+                        if (lastBracket != '{') {
+                            System.err.println("Error at " + i + " opened " + lastBracket + " but closed " + c);
+                        }
                     }
                     break;
             }
         }
+        while (!stack.isEmpty()) {
+            System.err.println("Error! opened " + (char) stack.pop() + " but not closed");
+        }
+
     }
 }
